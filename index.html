@@ -444,7 +444,7 @@ function local0(q){
 const fmt=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
 const msgs=$('#msgs');let hist=[],busy=false,sample=null;
 const sampleP=new Promise(r=>{try{window.claude.use('sample').then(s=>{sample=s;r()},()=>r())}catch(e){r()}});
-sampleP.then(()=>{const e=$('#aist');if(e)e.textContent=sample?'✨ AI answers are on':'📚 Answering from my lesson notes (AI answers only work inside Claude, with permission)'});
+sampleP.then(()=>{const e=$('#aist');if(e)e.textContent=sample?'✨ AI answers are on':'📚 Answering from my lesson notes'});
 function add(t,c){const d=document.createElement('div');d.className='m '+c;d.innerHTML=fmt(t);msgs.appendChild(d);while(msgs.children.length>80)msgs.firstChild.remove();msgs.scrollTop=msgs.scrollHeight;return d}
 async function send(t,off){
  t=(t||'').trim();if(!t||busy)return;{const g=chatGuard(t);if(g){$('#in').value='';add(t.slice(0,500),'u');add(g,'a');return}t=t.replace(/[\u0000-\u001f\u007f]/g,' ').slice(0,500)}busy=true;$('#in').value='';$('#chips').innerHTML='';
@@ -452,7 +452,7 @@ async function send(t,off){
  try{if(!sample&&!off)await Promise.race([sampleP,new Promise(r=>setTimeout(r,2500))]);if(off||!sample||!flag('ai'))throw 0;
   const r=await gw('ai.answer',()=>sample(SYS+'\n\nConversation so far:\n'+hist.slice(-8).map(m=>m[0]+': '+m[1]).join('\n')+'\nstockgpt:',{cache:false,onText:x=>{b.innerHTML=fmt(x.text);msgs.scrollTop=msgs.scrollHeight}}),{timeout:45000,retries:1});
   out=r.text}catch(e){}
- if(!out){out=local(t);const e=off?null:$('#aist');if(e)e.textContent='📚 Answering from my lesson notes (AI answers only work inside Claude, with permission)'}
+ if(!out){out=local(t);const e=off?null:$('#aist');if(e)e.textContent='📚 Answering from my lesson notes '}
  b.innerHTML=fmt(out);hist.push(['stockgpt',out]);if(hist.length>40)hist.splice(0,hist.length-40);busy=false;
  msgs.scrollTop=msgs.scrollHeight;
 }
