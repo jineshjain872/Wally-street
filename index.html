@@ -911,7 +911,7 @@ function renderLearn(){
   if(ui==0){h+=`<div class="unit" style="--c:#0f766e;--d:#0b5651"><h2>Trading strategies</h2><p>How traders read charts</p></div>${vcard(0,"#0f766e")}<div class="path" style="--c:#0f766e;--d:#0b5651">`+ST.map((e,i)=>stepHTML(100+i,e.n,i)).join('')+revN(0)+'</div>';
    h+=unitHTML(INDIA_U,0,INDIA_IDS).replace('<div class="unit"','<div class="unit india"')}});
  if(hide)h+='<div class="card"><h3>🔒 More levels ahead</h3><p>These lessons were not certified by a professional.</p></div>';
- h+=`<p class="xs2" style="text-align:center;margin:10px 0 24px">Lessons were written with AI and checked against public sources. They have not yet been reviewed by a certified financial educator.</p>`;
+ h+=`<p class="xs2" style="text-align:center;margin:10px 0 24px">Lessons were checked against public sources. They have not yet been reviewed by a certified financial educator.</p>`;
  $('#learn').innerHTML=h;stickyInit()}
 function learnX(e){const t=e.target.closest('[data-pt],[data-rv],[data-msn],[data-fz],[data-svp]');if(!t)return false;
  if(t.dataset.pt){start(0,'pt');return true}
