@@ -25,6 +25,13 @@ i=g.index('<link rel="icon" type="image/svg+xml"');j=g.index('>',i)+1
 g=g[:i]+icons+og+g[j:]
 assert g.count("worker-src 'none'")==1
 g=g.replace("worker-src 'none'","worker-src 'self'")
+# Add Vercel Web Analytics
+analytics_scripts = "<script>\n  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };\n</script>\n<script defer src=\"/_vercel/insights/script.js\"></script>\n"
+# Update CSP to allow Vercel analytics
+g=g.replace("script-src 'unsafe-inline'", "script-src 'unsafe-inline' https://va.vercel-scripts.com")
+g=g.replace("connect-src 'none'", "connect-src https://vitals.vercel-insights.com")
+# Add analytics before </head>
+g=g.replace('</head>', analytics_scripts+'</head>')
 g=g.replace('</body></html>','<script>if(\'serviceWorker\' in navigator&&location.protocol==\'https:\')addEventListener(\'load\',()=>navigator.serviceWorker.register(\'sw.js\').catch(()=>{}))</script></body></html>')
 assert 'serviceWorker' in g
 open(S+'index.html','w',encoding='utf8').write(g)
@@ -63,24 +70,33 @@ self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.a
 self.addEventListener('fetch',e=>{const r=e.request;if(r.method!=='GET'||new URL(r.url).origin!==location.origin)return;
  e.respondWith(fetch(r).then(res=>{if(res.ok){const cp=res.clone();caches.open(C).then(c=>c.put(r,cp))}return res}).catch(()=>caches.match(r).then(m=>m||(r.mode==='navigate'?caches.match('index.html'):Response.error()))))});
 """)
-open(S+'ANALYTICS-optional.txt','w').write("""OPTIONAL: VISITOR STATS WITH PLAUSIBLE
-=======================================
+open(S+'ANALYTICS-optional.txt','w').write("""VISITOR STATS WITH VERCEL WEB ANALYTICS
+========================================
+
+✅ Vercel Web Analytics is now configured for this site!
 
 The game already keeps private visit and lesson counts on each device
 (Settings > System status). Those never leave the device.
 
-If you also want site-wide visitor numbers, Plausible is a privacy-friendly
-option (no cookies, no personal data). It is a paid service with a free trial.
+For site-wide visitor numbers, Vercel Web Analytics has been integrated:
+- Privacy-friendly (no cookies, no personal data)
+- Free tier available
+- Provides real-time traffic insights
 
-1. Sign up at https://plausible.io and add your site address.
-2. In index.html, find the Content-Security-Policy line near the top and change
-     script-src 'unsafe-inline'      to   script-src 'unsafe-inline' https://plausible.io
-     connect-src 'none'              to   connect-src https://plausible.io
-3. Paste this just before </head> in index.html (use your own domain):
-     <script defer data-domain="your-website.example" src="https://plausible.io/js/script.js"></script>
-4. Add one line to privacy.html saying you use Plausible for anonymous visit counts.
+What was added:
+1. Updated Content-Security-Policy to allow Vercel analytics scripts
+2. Added analytics initialization script before </head> in index.html
+3. Analytics will automatically track page views when deployed to Vercel
 
-If you skip this, nothing breaks: the site simply has no outside analytics.
+To enable analytics in your Vercel dashboard:
+1. Navigate to your project's Analytics tab
+2. Click "Enable Web Analytics"
+3. Deploy the site to start collecting data
+
+If you prefer a different analytics solution like Plausible:
+- Sign up at https://plausible.io and add your site address
+- Update the Content-Security-Policy and script tags accordingly
+- See Plausible's documentation for specific setup instructions
 """)
 open(S+'README.txt','w').write(f'''WALLY STREET: WEBSITE FILES
 ============================

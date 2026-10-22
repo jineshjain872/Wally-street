@@ -1,18 +1,27 @@
-OPTIONAL: VISITOR STATS WITH PLAUSIBLE
-=======================================
+VISITOR STATS WITH VERCEL WEB ANALYTICS
+========================================
+
+✅ Vercel Web Analytics is now configured for this site!
 
 The game already keeps private visit and lesson counts on each device
 (Settings > System status). Those never leave the device.
 
-If you also want site-wide visitor numbers, Plausible is a privacy-friendly
-option (no cookies, no personal data). It is a paid service with a free trial.
+For site-wide visitor numbers, Vercel Web Analytics has been integrated:
+- Privacy-friendly (no cookies, no personal data)
+- Free tier available
+- Provides real-time traffic insights
 
-1. Sign up at https://plausible.io and add your site address.
-2. In index.html, find the Content-Security-Policy line near the top and change
-     script-src 'unsafe-inline'      to   script-src 'unsafe-inline' https://plausible.io
-     connect-src 'none'              to   connect-src https://plausible.io
-3. Paste this just before </head> in index.html (use your own domain):
-     <script defer data-domain="your-website.example" src="https://plausible.io/js/script.js"></script>
-4. Add one line to privacy.html saying you use Plausible for anonymous visit counts.
+What was added:
+1. Updated Content-Security-Policy to allow Vercel analytics scripts
+2. Added analytics initialization script before </head> in all HTML files
+3. Analytics will automatically track page views when deployed to Vercel
 
-If you skip this, nothing breaks: the site simply has no outside analytics.
+To enable analytics in your Vercel dashboard:
+1. Navigate to your project's Analytics tab
+2. Click "Enable Web Analytics"
+3. Deploy the site to start collecting data
+
+If you prefer a different analytics solution like Plausible:
+- Sign up at https://plausible.io and add your site address
+- Update the Content-Security-Policy and script tags accordingly
+- See Plausible's documentation for specific setup instructions
