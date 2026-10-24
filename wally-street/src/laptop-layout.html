@@ -1,0 +1,28 @@
+<!-- Wider layout and keyboard shortcuts for the laptop build. scripts/build_variants.py copies these two parts into dist/stockgpt-laptop.html. -->
+<style>
+@media(min-width:700px){
+#app{max-width:1280px;display:grid;grid-template-columns:230px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+header{grid-column:1/-1;padding:14px 28px}.logo{font-size:30px}.pill{font-size:16px;padding:6px 14px}
+main{grid-column:2;grid-row:2}
+nav{grid-column:1;grid-row:2;flex-direction:column;justify-content:flex-start;border-top:0;border-right:2px solid var(--line);padding:16px 12px;gap:6px}
+nav button{display:flex;align-items:center;gap:12px;text-align:left;font-size:16px;padding:12px 14px;border-radius:12px}nav button:hover{background:var(--line)}nav span{display:inline;font-size:22px}
+#learn,#news,#picks,#hist{padding:28px max(32px,calc((100% - 880px)/2))}
+.gr{grid-template-columns:repeat(3,1fr)}.gc:hover,.opt:hover,.chip:hover,.tl:hover,.row:hover,.btn:hover{filter:brightness(.96)}
+#hist.on{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}#hist .card{margin:0}#hist>.mrow{grid-column:1/-1;margin:0}
+#news.on{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}#news .card{margin:0}#news>.card:first-child{grid-column:1/-1}
+#msgs{padding:24px max(32px,calc((100% - 820px)/2))}.m{max-width:75%;font-size:16px}
+#chips,#tools,#bar2,#chat .note{width:100%;max-width:820px;margin-left:auto;margin-right:auto}
+.in{max-width:760px}#qb h2{font-size:30px}.opt{font-size:19px}.cvw svg{height:250px}.node:hover:not(:disabled){filter:brightness(1.07)}
+#prac.on{display:grid;grid-template-columns:1fr 1fr;align-content:start}
+#prac>.tape,#prac>.xp{grid-column:1/-1}
+#pn{grid-template-columns:1fr 1fr}#pn .cw svg{height:230px}.tape{font-size:15px}
+}
+</style>
+<script>
+termsOK()?startup():showTerms();
+addEventListener('keydown',e=>{if($('#ls').style.display!='flex'||e.target.tagName=='INPUT')return;
+ if(e.key>='1'&&e.key<='3'){const o=document.querySelectorAll('.opt')[+e.key-1];if(o)o.click()}
+ else if(e.key=='Enter'){const b=$('#chk:not([disabled])')||$('#nx')||$('#st')||$('#fin');if(b)b.click()}
+ else if(e.key=='Escape')quit()});
+renderLearn();head();
+</script>

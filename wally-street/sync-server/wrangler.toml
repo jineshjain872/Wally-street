@@ -1,0 +1,12 @@
+# Cloudflare settings for the Wally Street sync server (only needed if you deploy with wrangler)
+name = "wally-street-sync"
+main = "worker.mjs"
+compatibility_date = "2026-10-01"
+
+[[kv_namespaces]]
+binding = "WALLY"
+id = "PASTE-YOUR-KV-NAMESPACE-ID-HERE"
+
+# Optional: only let your own website use the server from a browser
+# [vars]
+# ALLOW_ORIGIN = "https://your-username.github.io"
