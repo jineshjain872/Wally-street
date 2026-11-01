@@ -1,0 +1,27 @@
+{
+  "name": "Wally Street",
+  "short_name": "Wally Street",
+  "description": "Learn the stock market the fun way: bite-sized lessons, streaks and Wally coins, a friendly tutor, and practice trading with $100,000 of paper money.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f8f1",
+  "theme_color": "#18965c",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
