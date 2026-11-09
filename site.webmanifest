@@ -1,12 +1,20 @@
 {
+  "id": "/",
   "name": "Wally Street",
   "short_name": "Wally Street",
   "description": "Learn the stock market the fun way: bite-sized lessons, streaks and Wally coins, a friendly tutor, and practice trading with $100,000 of paper money.",
+  "lang": "en",
+  "dir": "ltr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f8f1",
   "theme_color": "#18965c",
+  "categories": [
+    "education",
+    "finance",
+    "games"
+  ],
   "icons": [
     {
       "src": "icon-192.png",
@@ -19,9 +27,45 @@
       "type": "image/png"
     },
     {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
       "src": "favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/phone-1.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Learn the stock market one bite-sized lesson at a time"
+    },
+    {
+      "src": "screenshots/phone-2.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Practise trading with $100,000 of pretend money"
+    },
+    {
+      "src": "screenshots/phone-3.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Ask Wally, the friendly tutor"
+    },
+    {
+      "src": "screenshots/phone-4.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Your profile, stats, medals and friends"
     }
   ]
 }
