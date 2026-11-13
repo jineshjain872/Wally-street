@@ -610,17 +610,17 @@ body::before{content:"";position:fixed;inset:0;z-index:-1;background:var(--sky);
 @media(prefers-contrast:more){body::before{display:none}}
 html.hc body::before{display:none}
 @media(min-width:700px){
-#app{max-width:1280px;display:grid;grid-template-columns:230px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+#app{max-width:none;display:grid;grid-template-columns:230px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
 header{grid-column:1/-1;padding:14px 28px}.logo{font-size:30px}.pill{font-size:16px;padding:6px 14px}
 main{grid-column:2;grid-row:2}
 nav{grid-column:1;grid-row:2;flex-direction:column;justify-content:flex-start;border-top:0;border-right:2px solid var(--line);padding:16px 12px;gap:6px}
 nav button{display:flex;align-items:center;gap:12px;text-align:left;font-size:16px;padding:12px 14px;border-radius:12px}nav button:hover{background:var(--line)}nav span{display:inline;font-size:22px}
-#learn,#news,#picks,#hist,#dev,#bank{padding:28px max(32px,calc((100% - 880px)/2))}
+#learn,#news,#picks,#hist,#dev,#bank{padding:28px max(32px,calc((100% - 1600px)/2))}
 .gr{grid-template-columns:repeat(3,1fr)}.gc:hover,.opt:hover,.chip:hover,.tl:hover,.row:hover,.btn:hover{filter:brightness(.96)}
 #hist.on{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}#hist .card{margin:0}#hist>.mrow{grid-column:1/-1;margin:0}
 #news.on{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}#news .card{margin:0}#news>.card:first-child{grid-column:1/-1}
-#msgs{padding:24px max(32px,calc((100% - 820px)/2))}.m{max-width:75%;font-size:16px}
-#chips,#tools,#bar2,#chat .note{width:100%;max-width:820px;margin-left:auto;margin-right:auto}
+#msgs{padding:24px max(32px,calc((100% - 1600px)/2))}.m{max-width:75%;font-size:16px}
+#chips,#tools,#bar2,#chat .note{width:100%;max-width:1600px;padding-left:32px;padding-right:32px;margin-left:auto;margin-right:auto}
 .in{max-width:760px}#qb h2{font-size:30px}.opt{font-size:19px}.cvw svg{height:250px}.node:hover:not(:disabled){filter:brightness(1.07)}
 #prac.on{display:grid;grid-template-columns:1fr 1fr;align-content:start}
 #prac>.tape,#prac>.xp{grid-column:1/-1}
@@ -3885,7 +3885,7 @@ function rlBlock(m){const r=LS(RLK)||{},now=Date.now();r.f=(r.f||[]).filter(x=>n
 function rlRecord(m,ok){const r=LS(RLK)||{},now=Date.now();r.f=r.f||[];r.s=r.s||[];if(m=='in'){if(ok)r.f=[];else r.f.push(now)}else{r.s.push(now);if(ok)r.a=(r.a||0)+1}try{localStorage.setItem(RLK,JSON.stringify(r))}catch(e){}}
 let CG=[];const cdoc=p=>{const n=Date.now();CG=CG.filter(x=>n-x<6e4);if(CG.length>=30){const er=()=>Promise.reject(new Error('rate limit'));return{get:er,set:er,delete:er}}CG.push(n);return cloud.doc(p)};
 /* ---------- reliability, security and observability layer ---------- */
-var APP_VER='5.8.1',API_V='v1',SCHEMA_V=2,TAB=Math.random().toString(36).slice(2,8),LOGS=[],MET={},INC=[],BRK={},IDEM={},CHT=[],LC=new Map(),DIDX=null,BC=null,LEADER=false,CHAOS=0,TSKIP=0,HB=Date.now(),COLD=0,SKEW=false,BUS={};
+var APP_VER='5.8.2',API_V='v1',SCHEMA_V=2,TAB=Math.random().toString(36).slice(2,8),LOGS=[],MET={},INC=[],BRK={},IDEM={},CHT=[],LC=new Map(),DIDX=null,BC=null,LEADER=false,CHAOS=0,TSKIP=0,HB=Date.now(),COLD=0,SKEW=false,BUS={};
 function tid(){return Math.random().toString(36).slice(2,10)}
 function esc(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function log(lv,ev,d){if(!LOGS)return;LOGS.push({t:Date.now(),lv,ev,d:d||''});if(LOGS.length>200)LOGS.shift();if(lv=='error')alertCheck()}
