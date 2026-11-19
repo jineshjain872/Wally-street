@@ -2,7 +2,7 @@
   "id": "/",
   "name": "Wally Street",
   "short_name": "Wally Street",
-  "description": "Learn the stock market the fun way: bite-sized lessons, streaks and Wally coins, a friendly tutor, and practice trading with $100,000 of paper money.",
+  "description": "Learn the stock market the fun way: bite-sized lessons, streaks and Wally coins, a friendly tutor, and practice trading with Wally coins.",
   "lang": "en",
   "dir": "ltr",
   "start_url": "./",
@@ -51,7 +51,7 @@
       "sizes": "1080x1920",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Practise trading with $100,000 of pretend money"
+      "label": "Practise trading with Wally coins"
     },
     {
       "src": "screenshots/phone-3.png",
